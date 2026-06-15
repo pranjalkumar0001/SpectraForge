@@ -22,7 +22,7 @@ public:
             {
                 int len_signal = total_interval*sampling_rate + 1;
                 new_signal.reserve(len_signal);
-               constexpr double pi = 3.14159265358979323846;
+                constexpr double pi = 3.14159265358979323846;
                 for(int i = 0; i<len_signal; i++)
                 {
                     double theta = 2*pi*frequency*i/sampling_rate + phase_difference;
@@ -30,6 +30,9 @@ public:
                 } 
                 return Signal(new_signal, sampling_rate);
             }
-            
+            else{
+                new_signal.assign(1,0);
+                return Signal(new_signal,0);
+            }
         }
     };
