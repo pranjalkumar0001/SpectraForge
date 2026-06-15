@@ -35,4 +35,21 @@ public:
                 return Signal(new_signal,0);
             }
         }
+
+
+        int size()
+        {
+            return samples.size();
+        }
+
+        double getSampleRate()
+        {
+            return sample_rate;
+        }
+
+        std::vector<double> getSamples()
+        {
+            return samples;
+        }
+
     };
