@@ -44,3 +44,8 @@ std::vector<double> Signal::getSamples()
 {
     return samples;
 }
+
+double Signal::duration()
+{
+    return (size()-1)/sample_rate;
+}

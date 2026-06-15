@@ -20,4 +20,6 @@ public:
     double getSampleRate();
 
     std::vector<double> getSamples();
+
+    double duration();
 };

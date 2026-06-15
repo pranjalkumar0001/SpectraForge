@@ -7,4 +7,5 @@ int main(){
     for (int i = 0; i < s.size(); i++){
         std::cout<< s.getSamples()[i]<<",";
     }
+    std::cout<< "\n"<<s.duration()<<std::endl;
 }
