@@ -30,22 +30,22 @@ Signal Signal::sin_signal_generator(
     }
 }
 
-int Signal::size()
+int Signal::size() const
 {
     return samples.size();
 }
 
-double Signal::getSampleRate()
+double Signal::getSampleRate() const
 {
     return sample_rate;
 }
 
-std::vector<double> Signal::getSamples()
+std::vector<double> Signal::getSamples() const
 {
     return samples;
 }
 
-double Signal::duration()
+double Signal::duration() const
 {
     return (size()-1)/sample_rate;
 }

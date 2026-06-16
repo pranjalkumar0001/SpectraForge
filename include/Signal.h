@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <cmath>
 
@@ -15,11 +16,11 @@ public:
         double phase_difference = 0,
         double amplitude = 1);
 
-    int size();
+    int size() const;
 
-    double getSampleRate();
+    double getSampleRate() const;
 
-    std::vector<double> getSamples();
+    std::vector<double> getSamples() const;
 
-    double duration();
+    double duration() const;
 };
