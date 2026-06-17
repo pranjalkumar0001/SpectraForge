@@ -23,4 +23,14 @@ public:
     std::vector<double> getSamples() const;
 
     double duration() const;
+
+    Signal operator+(const Signal& other) const;
+
+    Signal operator*(double scaler) const;
+
+    Signal operator-(const Signal& other) const;
+
+    Signal operator/(double scaler) const;
 };
+
+Signal operator*(double scaler, const Signal& signal);
