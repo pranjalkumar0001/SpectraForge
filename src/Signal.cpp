@@ -28,6 +28,15 @@ Signal Signal::sin_signal_generator(
     
 }
 
+Signal Signal::DC_signal_generator(double sampling_rate,double total_interval, double amplitude)
+{
+    if (sampling_rate<=0) throw std::invalid_argument("sampling rate must be grater than 0");
+    if (total_interval<=0) throw std::invalid_argument("time interval must be greater than 0");
+    int len_signal = total_interval*sampling_rate + 1;
+    std::vector<double> new_signal(len_signal, amplitude);
+    return Signal(new_signal, sampling_rate);
+}
+
 int Signal::size() const
 {
     return samples.size();
@@ -83,8 +92,59 @@ Signal Signal::operator-(const Signal& other) const
     return *this + (other * (-1));
 }
 
+Signal Signal::operator-() const
+{
+    return *this*(-1);
+}
+
 Signal Signal::operator/(double scaler) const
 {
     if(scaler == 0) throw std::runtime_error("Division by zero not possible");
     return *this * (1/scaler);
+}
+
+Signal Signal::normalise() const
+{
+    int len = size();
+    if(len == 0) throw std::invalid_argument("Signal is empty");
+    double max_amp =std::abs(samples[0]);
+    for (double a : samples)
+    {
+        if (std::abs(a) > max_amp) max_amp = std::abs(a) ;
+    }
+    if (max_amp == 0) return *this;
+    return (*this)/max_amp;
+}
+
+double Signal::RMS() const
+{
+    if(size() == 0) throw std::invalid_argument("Signal is empty");
+    double sq_sum = 0;
+    for (double a : samples)
+    {
+        sq_sum = sq_sum+ a*a;
+    }
+    return (std::sqrt(sq_sum/size()));
+}
+
+double Signal::energy() const
+{
+    if(size() == 0) throw std::invalid_argument("Signal is empty");
+    double sq_sum = 0;
+    for (double a : samples)
+    {
+        sq_sum = sq_sum+ a*a;
+    }
+    return sq_sum;
+}
+
+double Signal::mean() const
+{
+    if(size() == 0) throw std::invalid_argument("Signal is empty");
+    double sum = 0;
+    for (double a : samples)
+    {
+        sum = sum + a;
+    }
+    return sum/size();
 }

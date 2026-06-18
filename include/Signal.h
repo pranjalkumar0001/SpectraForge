@@ -15,6 +15,8 @@ public:
         double frequency,
         double phase_difference = 0,
         double amplitude = 1);
+    
+    static Signal DC_signal_generator(double sampling_rate,double total_interval, double amplitude);
 
     int size() const;
 
@@ -30,7 +32,17 @@ public:
 
     Signal operator-(const Signal& other) const;
 
+    Signal operator-() const;
+
     Signal operator/(double scaler) const;
+
+    Signal normalise() const;
+    
+    double RMS() const;
+
+    double energy() const;
+
+    double mean() const;
 };
 
 Signal operator*(double scaler, const Signal& signal);
