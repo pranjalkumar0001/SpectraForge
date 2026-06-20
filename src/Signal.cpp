@@ -1,6 +1,5 @@
 #include "../include/Signal.h"
 #include <stdexcept>
-#include <numbers>
 
 Signal::Signal(std::vector<double> Samples, double sampleRate):samples(Samples), sample_rate(sampleRate)
 {
@@ -18,7 +17,7 @@ Signal Signal::sin_signal_generator(
     if (total_interval<=0) throw std::invalid_argument("time interval must be greater than 0");
     int len_signal = total_interval*sampling_rate + 1;
     new_signal.reserve(len_signal);
-        constexpr double pi = std::numbers::pi;
+        const double pi = std::acos(-1);
         for(int i = 0; i<len_signal; i++)
         {
             double theta = 2*pi*frequency*i/sampling_rate + phase_difference;
